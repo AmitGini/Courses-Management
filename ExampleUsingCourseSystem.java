@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/*
+    * This is an example of using the Course Management System.
+ */
 public class ExampleUsingCourseSystem {
 
     public static CourseSystemFacade courseSystem = new CourseSystemFacade(); // Singleton Pattern
