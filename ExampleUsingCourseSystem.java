@@ -25,14 +25,14 @@ public class ExampleUsingCourseSystem {
         courseSystem.login("AmitL", "1");
         courseSystem.setNewCourse("Java", "1", "elective", "AmitL");
         courseSystem.setCourseCapacity("1", "AmitL",2);
-        courseSystem.setLecturerPractitionerToCourse("1", "AmitS1");
-        courseSystem.setLecturerPractitionerToCourse("1", "AmitS2");
-        courseSystem.setLecturerPractitionerToCourse("1", "AmitS3");
+        courseSystem.setStudentRegistrationToCourse("1", "AmitS1");
+        courseSystem.setStudentRegistrationToCourse("1", "AmitS2");
+        courseSystem.setStudentRegistrationToCourse("1", "AmitS3");
         courseSystem.setLecturerPractitionerToCourse("1", "AmitP");
         courseSystem.setCourseGradeToStudent("AmitL", "AmitS1", "1", 90);
         courseSystem.setChangeSubscriptionCourse("1", "AmitS3");
         courseSystem.setStudentUnRegistrationToCourse("1", "AmitS2");
-        courseSystem.setLecturerPractitionerToCourse("1", "AmitS3");
+        courseSystem.setStudentRegistrationToCourse("1", "AmitS3");
         courseSystem.setCourseGradeToStudent("AmitL", "AmitS3", "1", 70);
         startDialog();
     }
