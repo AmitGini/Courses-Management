@@ -111,14 +111,6 @@ courseSystem.setNewCourse("Java Programming", "CS101", "elective", "ProfSmith");
 - Java 8 or higher
 - Command-line interface support
 
-## Future Improvements
-
-1. Graphical User Interface (GUI)
-2. Database integration
-3. Email notification system
-4. Course schedule management
-5. Advanced grading features
-6. Report generation capabilities
 
 ## Contributing
 
