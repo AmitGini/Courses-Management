@@ -10,7 +10,7 @@ A Java-based university course management system that implements various design 
   - Secure login and signup functionality
 
 - Course Management
-  - Creation of different course types (seminar, elective, mandatory)
+  - Creation of different course types (Seminar, Elective, Mandatory)
   - Course capacity management
   - Grade management
   - Course registration and unregistration
