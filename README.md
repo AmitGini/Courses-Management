@@ -1,116 +1,113 @@
 # Course Management System
 
-A Java-based university course management system that implements various design patterns and object-oriented principles to provide a robust and user-friendly interface for course registration and management.
+This repository implements a **Course Management System** designed to allow lecturers, practitioners, and students to interact with university courses using a well-structured and scalable system. The system utilizes advanced software design principles and patterns to ensure maintainability, performance, and user-friendliness.
+
 
 ## Features
+- **Course Management**: Create, delete, and manage courses (e.g., elective, compulsory, seminar).
+- **Student Management**: Register/unregister students for courses with limited capacity.
+- **Notifications**: Notify students when course spaces become available.
+- **User Roles**: Different roles with specific privileges (students, practitioners, lecturers).
+- **Simple Interface**: Exposed through a facade to keep interactions straightforward for end-users.
 
-- User Management
-  - Support for multiple user types (Students, Lecturers, Practitioners)
-  - Default capacity of 100 concurrent active users (configurable)
-  - Secure login and signup functionality
 
-- Course Management
-  - Creation of different course types (Seminar, Elective, Mandatory)
-  - Course capacity management
-  - Grade management
-  - Course registration and unregistration
-  - Notification system for course availability
+## Design Patterns Used
 
-- User Interface
-  - Simple command-line interface
-  - Clear menu-driven navigation
-  - Role-based access control
+1. **Singleton**:
+   - **Purpose**: Ensures a single instance of core classes like the `University` to maintain centralized data consistency.
+   - **Example**: The `CourseSystemFacade` and `University` use this pattern to avoid duplicate instances.
 
-## Design Patterns Implementation
+2. **Factory**:
+   - **Purpose**: Creates user and course objects without specifying their concrete classes.
+   - **Example**: `UserFactory` and `CourseFactory` abstract the creation process, allowing flexible additions to user or course types.
 
-### 1. Singleton Pattern
-- Implemented in the University class
-- Ensures only one instance of the university system exists
-- Centralizes course and user data management
-- Prevents data inconsistencies from multiple instances
+3. **Observer**:
+   - **Purpose**: Allows students to subscribe for notifications when a course's availability changes.
+   - **Example**: Students are notified when a seat becomes available in a course they are interested in.
 
-### 2. Factory Pattern
-- Implemented through UserFactory and CourseFactory
-- Creates different types of users (Student, Lecturer, Practitioner)
-- Creates different types of courses (Seminar, Elective, Mandatory)
-- Enables easy extension for new user or course types
+4. **Facade**:
+   - **Purpose**: Simplifies the interface for interacting with the system.
+   - **Example**: The `CourseSystemFacade` provides a straightforward API, abstracting the complex logic of the backend.
 
-### 3. Observer Pattern
-- Implemented in the course notification system
-- Students can subscribe to full courses
-- Automatic notifications when spots become available
-- Enables future expansion for additional notification types
+5. **Flyweight**:
+   - **Purpose**: Optimizes memory by reusing existing course and user data across operations.
+   - **Example**: Shared identity and course objects reduce memory overhead when handling multiple instances.
 
-### 4. Facade Pattern
-- Implemented through CourseSystemFacade
-- Provides simplified interface to complex subsystems
-- Handles:
-  - User authentication
-  - Course registration
-  - Grade management
-  - Notifications
-- Hides implementation complexity from end users
-
-### 5. Flyweight Pattern
-- Used for managing user identities in courses
-- Shares common user data across multiple courses
-- Optimizes memory usage
-- Improves system performance with large user bases
 
 ## Code Structure
 
-### Main Components
+- **`CourseSystemFacade`**:
+  - Acts as the system's facade, handling user login, course creation, student registration, and more. Simplifies interaction for clients while managing internal complexities.
 
-1. `CourseSystemFacade.java`
-   - Central interface for all system operations
-   - Manages user sessions and system capacity
-   - Handles course and user operations
-   - Implements error handling and status messages
+- **Factories**:
+  - `UserFactory` creates users (students, practitioners, lecturers).
+  - `CourseFactory` generates courses of different types.
 
-2. `ExampleUsingCourseSystem.java`
-   - Demonstrates system usage
-   - Provides command-line interface
-   - Implements menu-driven user interaction
-   - Shows example workflows for different user types
+- **Observer Integration**:
+  - Implements notification logic for students waiting on course availability.
 
-### Key Features Implementation
+- **Example Usage**:
+  - `ExampleUsingCourseSystem.java` provides a practical implementation showcasing how to interact with the system through dialogs and commands.
 
-#### User Management
+
+## Example Usage -  Course Management
 ```java
+public CourseSystemFacade()
 public boolean login(String username, String password)
 public boolean sign_up(String username, String password, String userType)
-```
-
-#### Course Management
-```java
 public Course setNewCourse(String courseName, String courseID, String courseType, String username)
 public boolean setStudentRegistrationToCourse(String courseID, String username)
 public boolean setCourseGradeToStudent(String lecturerUsername, String studentUsername, String courseID, int grade)
 ```
 
-## Usage Example
-
+#### User Management 
 ```java
-CourseSystemFacade courseSystem = new CourseSystemFacade();
-
-// System configuration
-courseSystem.setSystemCapacity(99); // Change default capacity from 100
-courseSystem.setStatusPrintingMessageFlag(true);
-
-// User creation
 courseSystem.sign_up("JohnDoe", "password123", "student");
 courseSystem.sign_up("ProfSmith", "password456", "lecturer");
-
-// Course management
 courseSystem.login("ProfSmith", "password456");
-courseSystem.setNewCourse("Java Programming", "CS101", "elective", "ProfSmith");
 ```
+
+#### Creating a New Course:
+```java
+courseSystem.setNewCourse("Java Programming", "101", "elective", "AmitL");
+```
+
+#### Registering a Student:
+```java
+courseSystem.setStudentRegistrationToCourse("101", "AmitS1");
+```
+
+#### Notifications for Full Courses:
+```java
+courseSystem.setChangeSubscriptionCourse("101", "AmitS1");
+```
+
+## Running the System
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AmitGini/Courses-Management.git
+   cd Courses-Management
+   ```
+
+2. Compile and run:
+   ```bash
+   javac *.java
+   java ExampleUsingCourseSystem
+   ```
+
+3. Interact through the terminal prompts to create users, manage courses, and test the system.
+
+---
+
+## Acknowledgments
+
+This project is a showcase of modern OOP and design principles, providing a robust foundation for real-world applications. It demonstrates a blend of simplicity and power, enabling efficient management of university courses.
 
 ## System Requirements
 
 - Java 8 or higher
 - Command-line interface support
-
 
 ## Contributing
 
@@ -120,4 +117,3 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-Feel free to send improvements or suggest interesting features
